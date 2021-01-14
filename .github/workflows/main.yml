@@ -33,4 +33,11 @@ jobs:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
       - run: |
-          echo "${{ github.token }}"
+          echo "${{ secrets.GITHUB_TOKEN }}"
+      - uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          version: "latest"
+          file: "asdf.txt"
+      - run: |
+          cat asdf.txt
+
